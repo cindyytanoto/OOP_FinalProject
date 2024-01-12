@@ -15,6 +15,12 @@ public class Helper {
 		return helper;
 	}
 	
+	public void clear() {
+		for (int i = 0; i < 50; i++) {
+			System.out.println("");
+		}
+	}
+	
 	public String getString(String command) {
 		String input;
 		System.out.print(command);
@@ -27,7 +33,7 @@ public class Helper {
 		int input;
 		System.out.print(command);
 		input = scan.nextInt();
-		
+//		scan.nextLine();
 		return input;
 	}
 	

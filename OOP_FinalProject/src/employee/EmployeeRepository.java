@@ -57,8 +57,8 @@ public class EmployeeRepository {
 		String employeeId = "";
 		
 		try {
-			PreparedStatement insertEmployee = database.prepareStatement(EmployeeQuery.ADD_EMPLOYEE);
-			ResultSet getLastEmployee = database.executeQuery(EmployeeQuery.GET_LAST_EMPLOYEE);
+			PreparedStatement insertEmployee = database.prepareStatement("INSERT INTO MsEmployee VALUES (?, ?, ?)");
+			ResultSet getLastEmployee = database.executeQuery("SELECT EmployeeID FROM MsEmployee ORDER BY EmployeeID DESC LIMIT 1");
 			if(!getLastEmployee.next()) {
 				employeeId = "EMP001";
 			} else {
@@ -78,7 +78,7 @@ public class EmployeeRepository {
 	public ArrayList<Object> getEmployee (String employeeId){
 		ArrayList<Object> temp = null;
 		try {
-			PreparedStatement selectEmployee = database.prepareStatement(EmployeeQuery.GET_EMPLOYEE);
+			PreparedStatement selectEmployee = database.prepareStatement("SELECT EmployeeID, EmployeeName, e.RestaurantID, RestaurantBranch, RestaurantName FROM MsEmployee e JOIN MsRestaurant r ON e.RestaurantID = r.RestaurantID WHERE e.EmployeeID = ? LIMIT 1");
 			selectEmployee.setString(1, employeeId);
 			ResultSet rs = selectEmployee.executeQuery();
 			temp = toEmployee(rs);

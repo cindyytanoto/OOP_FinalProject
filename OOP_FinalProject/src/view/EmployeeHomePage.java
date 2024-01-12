@@ -25,7 +25,8 @@ public class EmployeeHomePage extends MasterPage{
 			choice = helper.getInteger(">> ");
 			
 			if(choice == 1) {
-				
+				helper.clear();
+				new ManageMenuPage(restaurant);
 			} else if(choice == 2) {
 				
 			} else if(choice == 3) {
